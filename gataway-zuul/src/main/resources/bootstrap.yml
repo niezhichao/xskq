@@ -8,7 +8,6 @@ spring:
       discovery:
         enabled: true
         service-id: config-server #开启配置服务发现
-      fail-fast: false
       name: xskqconfig
       profile: test
   profiles:
