@@ -18,3 +18,14 @@ eureka:
       defaultZone: http://localhost:8761/eureka/
     register-with-eureka: true
     fetch-registry: true
+zuul:
+  routes:
+    attendance-service:
+      path: /attendance/**
+      serviceId: attendance-service
+    cla-service:
+      path: /cla/**
+      serviceId: cla-service
+    std-service:
+      path: /std/**
+      serivceId: std-service
