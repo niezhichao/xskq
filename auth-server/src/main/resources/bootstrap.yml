@@ -1,0 +1,29 @@
+server:
+  port:  9999
+  servlet:
+    context-path:  /uaa #web基路径
+spring:
+  application:
+    name:  auth-server
+spring:
+  application:
+    name: attendance-service
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: config-server #开启配置服务发现
+      fail-fast: false
+      name: xskqconfig
+      profile: test
+  profiles:
+    active: native
+
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    register-with-eureka: true
+    fetch-registry: true
