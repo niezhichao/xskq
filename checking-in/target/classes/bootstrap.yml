@@ -1,13 +1,14 @@
 server:
-  port: 8084
+  port: 8081
 spring:
   application:
-    name: gateway-zuul
+    name: attendance-service
   cloud:
     config:
       discovery:
         enabled: true
         service-id: config-server #开启配置服务发现
+      fail-fast: false
       name: xskqconfig
       profile: test
   profiles:
@@ -18,17 +19,5 @@ eureka:
       defaultZone: http://localhost:8761/eureka/
     register-with-eureka: true
     fetch-registry: true
-zuul:
-  routes:
-    attendance-service:
-      path: /attendance/**
-      serviceId: attendance-service
-    cla-service:
-      path: /cla/**
-      serviceId: cla-service
-    std-service:
-      path: /std/**
-      serivceId: std-service
-    gataway:
-      path: /zuul/**
-      serivceId: gateway-zuul
+
+
