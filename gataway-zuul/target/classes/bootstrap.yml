@@ -1,8 +1,8 @@
 server:
-  port: 8084
+  port: 5555
 spring:
   application:
-    name: gateway-zuul
+    name: zuul_server
   cloud:
     config:
       discovery:
@@ -29,6 +29,13 @@ zuul:
     std-service:
       path: /std/**
       serivceId: std-service
-    gataway:
-      path: /zuul/**
-      serivceId: gateway-zuul
+#security:
+#  oauth2:
+ #   client:
+  #    access-token-uri: http://localhost:/7777/uaa/oauth/token #令牌端点
+  #    user-authorization-uri: http://localhost:/7777/uaa/oauth/authorize #授权端点
+    #  client-id: zuul_server #客户端id
+     # client-secret: secret #oauth2客户端密钥
+    #resource:
+      #jwt:
+        #key-value: springcloud123 #使用对称加密 默认算法HS256
