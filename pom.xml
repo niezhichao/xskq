@@ -17,6 +17,8 @@
         <module>config-center</module>
         <module>gataway-zuul</module>
         <module>auth-server</module>
+        <module>user-service</module>
+        <module>web-service</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
