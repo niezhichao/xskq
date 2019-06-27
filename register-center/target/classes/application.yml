@@ -6,10 +6,11 @@ server:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:${server.port}/eureka/
-    register-with-eureka: false
+      defaultZone: http://localhost:8761/eureka/
     fetch-registry: false
     registry-fetch-interval-seconds: 5
   server:
     enable-self-preservation: false
+  instance:
+    hostname: 127.0.0.1
 

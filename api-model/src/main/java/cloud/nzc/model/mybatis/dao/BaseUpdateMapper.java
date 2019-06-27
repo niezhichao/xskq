@@ -9,6 +9,5 @@ public interface BaseUpdateMapper<T> {
     /*根据主键更新所有字段，null值会被更新*/
     int updateByPrimarykey(@Param("t") T t);
     /*根据主键更新非null字段*/
-    @UpdateProvider(type = BaseUpdateProvider.class,method = "updateNotEmptyByPrimarykey")
     int updateNotEmptyByPrimarykey(@Param("t") T t);
 }

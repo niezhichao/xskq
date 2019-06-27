@@ -26,6 +26,5 @@ public interface BaseDeleteMapper<T> {
      * @param t
      * @return
      */
-    @DeleteProvider(type = BaseDeleteProvider.class,method = "deleteByCondition")
     int deleteByCondition(@Param("t") T t);
 }

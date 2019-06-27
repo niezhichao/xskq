@@ -16,7 +16,6 @@ public interface BaseSelectMapper<T> {
     /**
      * 条件查询
      */
-    @SelectProvider(type = BaseSelectProvider.class,method = "selectByCondition")
     List<T> selectByCondition(@Param("t") T t);
 
     /**
@@ -24,7 +23,6 @@ public interface BaseSelectMapper<T> {
      * @param t
      * @return
      */
-    @SelectProvider(type = BaseSelectProvider.class,method = "selectCount")
     int selectCount(@Param("t")T t);
     /**
      * 查询全部

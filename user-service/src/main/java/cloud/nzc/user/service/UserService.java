@@ -1,28 +1,28 @@
 package cloud.nzc.user.service;
 
 import cloud.nzc.model.common.BaseService;
-import cloud.nzc.model.po.User;
+import cloud.nzc.model.po.UserPo;
 import cloud.nzc.user.dao.UserMapper;
-import org.apache.ibatis.annotations.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
-public class UserService  implements BaseService<User> {
+@Service
+public class UserService  implements BaseService<UserPo> {
     @Autowired
     private UserMapper userMapper;
     @Override
-    public int insert(User user) {
+    public int insert(UserPo user) {
         return 0;
     }
 
     @Override
-    public int updateByPrimaryKey(User user) {
+    public int updateByPrimaryKey(UserPo user) {
         return 0;
     }
 
     @Override
-    public int updateNotEmptyByPrimarykey(User user) {
+    public int updateNotEmptyByPrimarykey(UserPo user) {
         return 0;
     }
 
@@ -37,27 +37,27 @@ public class UserService  implements BaseService<User> {
     }
 
     @Override
-    public User getById(Object id) {
+    public UserPo getById(Object id) {
         return null;
     }
 
     @Override
-    public List<User> getAll() {
+    public List<UserPo> getAll() {
         return null;
     }
 
     @Override
-    public List<User> getListByParam(User user) {
+    public List<UserPo> getListByParam(UserPo user) {
+        return userMapper.selectByCondition(user);
+    }
+
+    @Override
+    public List<UserPo> getListByIds(List ids) {
         return null;
     }
 
     @Override
-    public List<User> getListByIds(List ids) {
-        return null;
-    }
-
-    @Override
-    public int getCount(User user) {
+    public int getCount(UserPo user) {
         return 0;
     }
 }
