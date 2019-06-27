@@ -10,6 +10,16 @@ public class LoginFilter extends ZuulFilter {
     }
 
     @Override
+    public boolean shouldFilter() {
+        return false;
+    }
+
+    @Override
+    public Object run() throws ZuulException {
+        return null;
+    }
+
+    @Override
     public boolean isStaticFilter() {
         return super.isStaticFilter();
     }
