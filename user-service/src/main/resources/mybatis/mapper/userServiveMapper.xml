@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cloud.nzc.user.dao.UserMapper">
+    <select id="selectByCondition" parameterType="cloud.nzc.model.po.UserPo" resultType="cloud.nzc.model.po.UserPo">
+        select
+        u.uid as uId,
+        u.uname as uName,
+        u.upwd as uPWD,
+        u.ustate as ustate,
+        u.name as name
+        from userpo u where 1=1
+        <if test="">
+
+        </if>
+
+    </select>
+</mapper>
+
