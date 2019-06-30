@@ -1,5 +1,6 @@
 package cloud.nzc.model.common;
 
+import java.io.Serializable;
 import java.util.List;
 
 public interface BaseService<T> {
@@ -12,5 +13,6 @@ public interface BaseService<T> {
     List<T> getAll();
     List<T> getListByParam(T t);
     List<T> getListByIds(List ids);
+    T getById(Serializable id);
     int getCount(T t);
 }

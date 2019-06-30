@@ -9,12 +9,33 @@
         u.uname as uName,
         u.upwd as uPWD,
         u.ustate as ustate,
-        u.name as name
+        u.realName as realName
         from userpo u where 1=1
-        <if test="">
-
+        <if test="t.uId !='' and t.uId !=null ">
+              and u.uid=#{t.uId}
         </if>
-
+        <if test="t.uName !='' and t.uName !=null ">
+            and u.uname=#{t.uName}
+        </if>
+        <if test="t.uPWD !='' and t.uPWD !=null ">
+            and u.upwd=#{t.uPWD}
+        </if>
+        <if test="t.ustate !='' and t.ustate !=null ">
+            and u.ustate=#{t.ustate}
+        </if>
+        <if test="t.realName !='' and t.realName !=null ">
+            and u.realName=#{t.realName}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultType="cloud.nzc.model.po.UserPo">
+        select
+        u.uid as uId,
+        u.uname as uName,
+        u.upwd as uPWD,
+        u.ustate as ustate,
+        u.realName as realName
+        from userpo u where 1=1
+        and u.uid=#{key}
     </select>
 </mapper>
 

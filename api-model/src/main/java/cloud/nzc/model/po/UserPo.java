@@ -21,8 +21,8 @@ public class UserPo extends  BaseEntity{
     private  String uPWD;//密码
     @Column(name="ustate")
     private  String ustate;//状态
-    @Column(name="name")
-    private  String name;//姓名
+    @Column(name="realName")
+    private  String realName;//姓名
     public UserPo(String username){
         this.uName=username;
     }
@@ -38,7 +38,7 @@ public class UserPo extends  BaseEntity{
                 ", uName='" + uName + '\'' +
                 ", uPWD='" + uPWD + '\'' +
                 ", ustate='" + ustate + '\'' +
-                ", name='" + name + '\'' +
+                ", name='" + realName + '\'' +
                 '}';
     }
 
@@ -56,7 +56,7 @@ public class UserPo extends  BaseEntity{
         this.uName = uName;
         this.uPWD = uPWD;
         this.ustate = ustate;
-        this.name = name;
+        this.realName = name;
     }
 
     public String getuName() {
@@ -84,11 +84,11 @@ public class UserPo extends  BaseEntity{
     }
 
     public String getName() {
-        return name;
+        return realName;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.realName = name;
     }
 
 

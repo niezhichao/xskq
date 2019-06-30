@@ -6,6 +6,7 @@ import cloud.nzc.user.dao.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.Serializable;
 import java.util.List;
 @Service
 public class UserService  implements BaseService<UserPo> {
@@ -54,6 +55,11 @@ public class UserService  implements BaseService<UserPo> {
     @Override
     public List<UserPo> getListByIds(List ids) {
         return null;
+    }
+
+    @Override
+    public UserPo getById(Serializable id) {
+        return userMapper.selectByPrimaryKey(id);
     }
 
     @Override

@@ -4,6 +4,7 @@ import cloud.nzc.model.mybatis.provider.BaseSelectProvider;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.SelectProvider;
 
+import java.io.Serializable;
 import java.util.List;
 
 public interface BaseSelectMapper<T> {
@@ -12,7 +13,7 @@ public interface BaseSelectMapper<T> {
      * @param key
      * @return
      */
-    T selectByPrimaryKey(Object key);
+    T selectByPrimaryKey(Serializable key);
     /**
      * 条件查询
      */
