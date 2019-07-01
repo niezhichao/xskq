@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cloud.nzc.user.dao.UserMapper">
+    <select id="selectByCondition" parameterType="cloud.nzc.model.po.UserPo" resultType="cloud.nzc.model.po.UserPo">
+        select
+        u.uid as uId,
+        u.uname as uName,
+        u.upwd as uPWD,
+        u.ustate as ustate,
+        u.realName as realName
+        from userpo u where 1=1
+        <if test="t.uId !='' and t.uId !=null ">
+              and u.uid=#{t.uId}
+        </if>
+        <if test="t.uName !='' and t.uName !=null ">
+            and u.uname=#{t.uName}
+        </if>
+        <if test="t.uPWD !='' and t.uPWD !=null ">
+            and u.upwd=#{t.uPWD}
+        </if>
+        <if test="t.ustate !='' and t.ustate !=null ">
+            and u.ustate=#{t.ustate}
+        </if>
+        <if test="t.realName !='' and t.realName !=null ">
+            and u.realName=#{t.realName}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultType="cloud.nzc.model.po.UserPo">
+        select
+        u.uid as uId,
+        u.uname as uName,
+        u.upwd as uPWD,
+        u.ustate as ustate,
+        u.realName as realName
+        from userpo u where 1=1
+        and u.uid=#{key}
+    </select>
+</mapper>
+

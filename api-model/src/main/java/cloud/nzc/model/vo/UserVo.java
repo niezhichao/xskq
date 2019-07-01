@@ -1,6 +1,5 @@
 package cloud.nzc.model.vo;
 
-import cloud.nzc.model.po.AppUser;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
