@@ -58,7 +58,7 @@ public class AuthService {
        String authUrl=uri+"/auth/oauth/token";
        log.info("authURL in method applyToken is----"+authUrl);
        LinkedMultiValueMap<String,String>  header=new LinkedMultiValueMap<>();
-       String httpbasic=getHttpbasic(clientId,clientSecret);
+       String httpbasic=getHttpbasic(clientId,clientSecret);// 客户端id 和密钥进行base64编码再加如请求header中
        header.add("Authorization",httpbasic);
        LinkedMultiValueMap<String,String>  body=new LinkedMultiValueMap<>();
        body.add("grant_type","password");

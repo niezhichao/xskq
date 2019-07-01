@@ -1,0 +1,44 @@
+server:
+  port:  ${PORT:40400}
+  servlet:
+    contextPath:  /auth #web基路径
+spring:
+  application:
+    name:  auth-server
+  redis:
+    host: {REDIS_HOST: 127.0.0.1}
+    port: {REDIS_PORT: 6379}
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: config-server #开启配置服务发现
+      fail-fast: false
+      name: xskqconfig
+      profile: test
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+  instance:
+    instance-id: ${spring.application.name}:${server.port} #指定实例id
+    prefer-ip-address: true
+    ip-address: ${IP_ADDRESS:127.0.0.1}
+
+
+auth:
+  tokenValiditySeconds: 1200
+  clientId: XcWebApp
+  clientSecret: XcWebApp
+  cookieDomain: localhost
+  cookieMaxAge: -1 #-1：浏览器关闭cookie就无效
+
+#encrypt:
+#  key-store:
+ #   location: classpath:/xskq.keystore
+ #   secret: xskqkeystore
+  #  alias: xskqkey
+  #  password: 123456
