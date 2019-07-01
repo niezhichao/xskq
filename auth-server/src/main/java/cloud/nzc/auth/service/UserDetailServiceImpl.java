@@ -45,13 +45,13 @@ public class UserDetailServiceImpl implements UserDetailsService {
         if (StringUtils.isEmpty(username)){
             return null;
         }
-        UserPo param=new UserPo(username);
-        List<UserPo> userPo= userClient.getUser(param);
+        UserPo userPo=new UserPo(username);
+        List<UserPo> userPos= userClient.getUser(userPo);
         log.info(userPo.toString());
         if (userPo ==null){
             return null;
         };
-        String password=userPo.get(0).getuPWD();
+        String password=userPos.get(0).getuPWD();
         User userDetails=new User(username,password,AuthorityUtils.commaSeparatedStringToAuthorityList("admin"));
         return userDetails;
     }

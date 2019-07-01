@@ -1,6 +1,7 @@
 import cloud.nzc.model.po.UserPo;
 import cloud.nzc.user.UserServiceApplication;
 import cloud.nzc.user.dao.UserMapper;
+import cloud.nzc.user.service.UserService;
 import jdk.nashorn.internal.scripts.JO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,11 +17,13 @@ import java.util.List;
 public class TestDao {
     @Autowired
     UserMapper userMapper;
+    @Autowired
+    UserService userService;
     @Test
     public void testUserDao(){
-        UserPo user=new UserPo();
-        user.setuName("nzc");
-       List<UserPo> userPos =userMapper.selectByCondition(user);
+        UserPo xx=new UserPo();
+        xx.setuName("nzc");
+       List<UserPo> userPos =userService.getListByParam(xx);
        System.out.println(userPos);
     }
 

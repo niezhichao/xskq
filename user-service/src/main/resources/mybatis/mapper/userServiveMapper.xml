@@ -14,7 +14,7 @@
         <if test="t.uId !='' and t.uId !=null ">
               and u.uid=#{t.uId}
         </if>
-        <if test="t.uName !='' and t.uName !=null ">
+        <if test="t.uName != '' and t.uName != null ">
             and u.uname=#{t.uName}
         </if>
         <if test="t.uPWD !='' and t.uPWD !=null ">
