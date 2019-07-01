@@ -9,7 +9,7 @@ import org.springframework.data.annotation.Id;
 import javax.persistence.Column;
 import javax.persistence.Table;
 
-@Table(name="user")
+@Table(name="userpo")
 public class UserPo extends  BaseEntity{
 
     @Id

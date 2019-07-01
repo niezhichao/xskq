@@ -1,8 +1,7 @@
 package cloud.nzc.model.mybatis.dao;
 
-import cloud.nzc.model.mybatis.provider.BaseSelectProvider;
 import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.SelectProvider;
+
 
 import java.io.Serializable;
 import java.util.List;
