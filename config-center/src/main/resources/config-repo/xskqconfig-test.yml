@@ -8,8 +8,10 @@ spring:
     username: root
     password: 123456
 #####################
-#zuul配置
+#       mybatis配置
 #####################
 
-
+mybatis:
+  type-aliases-package: cloud.nzc.model
+  mapper-locations: classpath:/mybatis/mapper/*
 

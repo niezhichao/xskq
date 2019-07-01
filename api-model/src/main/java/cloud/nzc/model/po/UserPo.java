@@ -83,13 +83,11 @@ public class UserPo extends  BaseEntity{
         this.ustate = ustate;
     }
 
-    public String getName() {
+    public String getRealName() {
         return realName;
     }
 
-    public void setName(String name) {
-        this.realName = name;
+    public void setRealName(String realName) {
+        this.realName = realName;
     }
-
-
 }
