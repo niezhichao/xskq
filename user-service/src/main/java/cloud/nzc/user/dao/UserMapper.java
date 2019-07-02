@@ -9,4 +9,6 @@ import org.springframework.stereotype.Component;
 @Component
 public interface UserMapper extends BaseDao<UserPo> {
 
+
+
 }
