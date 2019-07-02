@@ -2,6 +2,7 @@ package cloud.nzc.auth.controller;
 
 import cloud.nzc.api.auth.AuthControllerApi;
 import cloud.nzc.auth.service.AuthService;
+import cloud.nzc.common.CookieUtil;
 import cloud.nzc.model.auth.AuthToken;
 import cloud.nzc.model.exception.GlobalException;
 import cloud.nzc.model.common.HttpResponse;
@@ -18,6 +19,8 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author  niezhihcao
@@ -65,12 +68,13 @@ public class AuthController implements AuthControllerApi {
      */
     private void savaTokenToCookie(String token ){
         HttpServletResponse response=((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getResponse();
-        Cookie cookie=new Cookie("access_token",token);
-        cookie.setDomain(cookieDomain);
-        log.info("cokie name:"+cookieDomain);
-        cookie.setPath("/");
-        cookie.setMaxAge(cookieMaxAge);
-        cookie.setHttpOnly(false);
-        response.addCookie(cookie);
+        Map<String,Object> mapParam=new HashMap<>();
+        mapParam.put("name","uid");
+        mapParam.put("value",token);
+        mapParam.put("domain",cookieDomain);
+        mapParam.put("path","/");
+        mapParam.put("maxAge",cookieMaxAge);
+        mapParam.put("httpOnly",false);
+        CookieUtil.addCookie(mapParam);
     }
 }
