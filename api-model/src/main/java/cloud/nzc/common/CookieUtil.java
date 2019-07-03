@@ -1,7 +1,6 @@
 package cloud.nzc.common;
 
-import com.netflix.client.http.HttpResponse;
-import com.netflix.ribbon.proxy.annotation.Http;
+
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;

@@ -37,5 +37,15 @@
         from userpo u where 1=1
         and u.uid=#{key}
     </select>
+    <select id="selectByUsername" parameterType="java.lang.String" resultType="cloud.nzc.model.po.UserPo">
+        select
+        u.uid as uId,
+        u.uname as uName,
+        u.upwd as uPWD,
+        u.ustate as ustate,
+        u.realName as realName
+        from userpo u where 1=1
+        and u.uname=#{username}
+    </select>
 </mapper>
 

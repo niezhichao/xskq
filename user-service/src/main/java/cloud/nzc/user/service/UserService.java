@@ -1,7 +1,9 @@
 package cloud.nzc.user.service;
 
 import cloud.nzc.model.common.BaseService;
+import cloud.nzc.model.po.AppUserPermission;
 import cloud.nzc.model.po.UserPo;
+import cloud.nzc.user.dao.AppPermissinDao;
 import cloud.nzc.user.dao.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +14,7 @@ import java.util.List;
 public class UserService  implements BaseService<UserPo> {
     @Autowired
     private UserMapper userMapper;
+    private AppPermissinDao appPermissinDao;
     @Override
     public int insert(UserPo user) {
         return 0;
@@ -65,5 +68,13 @@ public class UserService  implements BaseService<UserPo> {
     @Override
     public int getCount(UserPo user) {
         return 0;
+    }
+
+    public UserPo  getUserByUsername(String username){
+        return userMapper.selectByUsername(username);
+    }
+
+    public AppUserPermission getUserWithPermissionByUserName(String username){
+        return null;
     }
 }

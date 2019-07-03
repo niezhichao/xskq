@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cloud.nzc.user.dao.UserMapper">
+    <select id="selectByCode" parameterType="java.lang.String" resultType="cloud.nzc.model.po.AppPermission">
+        select
+        ap.id as id
+        ap.p_code as p_code
+        ap.p_name as p_name
+        from apppermission ap where ap.p_code=#{code}
+    </select>
+</mapper>
