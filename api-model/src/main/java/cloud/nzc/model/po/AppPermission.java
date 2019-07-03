@@ -17,6 +17,17 @@ public class AppPermission {
     @Column(name ="p_name")
     private String p_name;
 
+    public AppPermission() {
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public String getP_code() {
         return p_code;
     }
@@ -33,26 +44,12 @@ public class AppPermission {
         this.p_name = p_name;
     }
 
-    public AppPermission(String code) {
-        this.p_code = code;
-    }
-
-    public AppPermission() {
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getCode() {
-        return p_code;
-    }
-
-    public void setCode(String code) {
-        this.p_code = code;
+    @Override
+    public String toString() {
+        return "AppPermission{" +
+                "id='" + id + '\'' +
+                ", p_code='" + p_code + '\'' +
+                ", p_name='" + p_name + '\'' +
+                '}';
     }
 }

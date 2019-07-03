@@ -1,6 +1,9 @@
 package cloud.nzc.user.service;
 
 import cloud.nzc.model.common.BaseService;
+import cloud.nzc.model.common.ResultCode;
+import cloud.nzc.model.exception.GlobalException;
+import cloud.nzc.model.po.AppPermission;
 import cloud.nzc.model.po.AppUserPermission;
 import cloud.nzc.model.po.UserPo;
 import cloud.nzc.user.dao.AppPermissinDao;
@@ -14,6 +17,7 @@ import java.util.List;
 public class UserService  implements BaseService<UserPo> {
     @Autowired
     private UserMapper userMapper;
+    @Autowired
     private AppPermissinDao appPermissinDao;
     @Override
     public int insert(UserPo user) {
@@ -75,6 +79,13 @@ public class UserService  implements BaseService<UserPo> {
     }
 
     public AppUserPermission getUserWithPermissionByUserName(String username){
-        return null;
+        UserPo userPo=this.getUserByUsername(username);
+        if (userPo==null){
+            throw new GlobalException(ResultCode.USERNAME_ERROR);
+        }
+        UserPo result=new AppUserPermission(userPo);
+        List<AppPermission> appPermissions=appPermissinDao.selectListByUserName(result.getuName());
+        ((AppUserPermission) result).setPermissionList(appPermissions);
+        return (AppUserPermission) result;
     }
 }

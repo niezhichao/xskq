@@ -1,28 +1,24 @@
 package cloud.nzc.auth.service;
 
 import cloud.nzc.auth.feign.UserClient;
-import cloud.nzc.model.po.UserPo;
-import cloud.nzc.model.util.StringUtil;
-import cloud.nzc.model.vo.UserVo;
-import com.mysql.fabric.xmlrpc.Client;
+import cloud.nzc.model.po.AppPermission;
+import cloud.nzc.model.po.AppUserPermission;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.provider.ClientDetails;
 import org.springframework.security.oauth2.provider.ClientDetailsService;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
+import java.util.ArrayList;
 import java.util.List;
 @Service
 public class UserDetailServiceImpl implements UserDetailsService {
@@ -45,14 +41,19 @@ public class UserDetailServiceImpl implements UserDetailsService {
         if (StringUtils.isEmpty(username)){
             return null;
         }
-        UserPo userPo=new UserPo(username);
-        List<UserPo> userPos= userClient.getUser(userPo);
-        log.info(userPo.toString());
-        if (userPo ==null){
+        AppUserPermission appUserPermission=userClient.getUserPermission(username);
+        if (appUserPermission ==null){
             return null;
         };
-        String password=userPos.get(0).getuPWD();
-        User userDetails=new User(username,password,AuthorityUtils.commaSeparatedStringToAuthorityList("admin"));
+        List<AppPermission> appPermissions=appUserPermission.getPermissionList();
+        if (appPermissions==null){
+            appPermissions=new ArrayList<>();
+        }
+        List<String> userPermissions=new ArrayList<>();
+        appPermissions.forEach(item->userPermissions.add(item.getP_code()));
+        String authorityString=StringUtils.join(userPermissions.toArray(),",");
+        String password=appUserPermission.getuPWD();
+        User userDetails=new User(username,password,AuthorityUtils.commaSeparatedStringToAuthorityList(authorityString));
         return userDetails;
     }
 }

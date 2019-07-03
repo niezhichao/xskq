@@ -1,5 +1,6 @@
 package cloud.nzc.user.controller;
 
+import cloud.nzc.model.po.AppUserPermission;
 import cloud.nzc.model.po.UserPo;
 import cloud.nzc.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,5 +16,9 @@ public class UserController {
     @PostMapping("/getuser")
     public List<UserPo> getUser(@RequestBody UserPo userPo){
         return userService.getListByParam(userPo);
+    }
+    @GetMapping("/getUserPermisson")
+    public AppUserPermission getUserPermission(@RequestParam("username")String username){
+        return userService.getUserWithPermissionByUserName(username);
     }
 }
