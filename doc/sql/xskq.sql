@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50713
 File Encoding         : 65001
 
-Date: 2019-06-28 00:39:36
+Date: 2019-07-04 11:25:55
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -23,12 +23,15 @@ CREATE TABLE `apppermission` (
   `id` varchar(32) NOT NULL,
   `p_code` varchar(10) DEFAULT NULL,
   `p_name` varchar(20) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `apppermission_unique` (`p_code`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 -- ----------------------------
 -- Records of apppermission
 -- ----------------------------
+INSERT INTO `apppermission` VALUES ('12135', 'backMgr', '后台管理');
+INSERT INTO `apppermission` VALUES ('12457', 'menuMgr', '菜单管理');
 
 -- ----------------------------
 -- Table structure for `approle`
@@ -38,7 +41,8 @@ CREATE TABLE `approle` (
   `id` varchar(32) NOT NULL,
   `roleId` varchar(15) DEFAULT NULL,
   `roleName` varchar(20) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `role_unique` (`roleId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 -- ----------------------------
@@ -59,6 +63,16 @@ CREATE TABLE `class` (
 -- ----------------------------
 -- Records of class
 -- ----------------------------
+INSERT INTO `class` VALUES ('111', 'SE0301', '软件工程三年一班');
+INSERT INTO `class` VALUES ('112', 'SE0302', '软件工程三年二班');
+INSERT INTO `class` VALUES ('113', 'SE0303', '软件工程三年三班');
+INSERT INTO `class` VALUES ('114', 'EE0101', '电子工程一年一班');
+INSERT INTO `class` VALUES ('115', 'EE0102', '电子工程一年二班');
+INSERT INTO `class` VALUES ('116', 'EE0103', '电子工程一年三班');
+INSERT INTO `class` VALUES ('117', 'CS0201', '计算计科学二年一班');
+INSERT INTO `class` VALUES ('118', 'CS0203', '计算计科学二年三班');
+INSERT INTO `class` VALUES ('119', 'CS0301', '计算计科学三年一班');
+INSERT INTO `class` VALUES ('120', 'CS0302', '计算计科学三年二班');
 
 -- ----------------------------
 -- Table structure for `duty`
@@ -213,6 +227,8 @@ CREATE TABLE `rolepermission` (
 -- ----------------------------
 -- Records of rolepermission
 -- ----------------------------
+INSERT INTO `rolepermission` VALUES ('12389', 'backMgr', 'a1');
+INSERT INTO `rolepermission` VALUES ('12890', 'menuMgr', 'a1');
 
 -- ----------------------------
 -- Table structure for `student`
@@ -234,6 +250,9 @@ CREATE TABLE `student` (
 -- ----------------------------
 -- Records of student
 -- ----------------------------
+INSERT INTO `student` VALUES ('100', '111', '李向群', '正常', '男', null, '1343', null, '塔山英模');
+INSERT INTO `student` VALUES ('101', '112', '苏宁', '正常', '男', null, '1520', null, '优秀干部');
+INSERT INTO `student` VALUES ('103', '111', '刘小午', '正常', '男', null, '1521', null, '41指挥官');
 
 -- ----------------------------
 -- Table structure for `userpo`
@@ -241,11 +260,12 @@ CREATE TABLE `student` (
 DROP TABLE IF EXISTS `userpo`;
 CREATE TABLE `userpo` (
   `uid` varchar(32) NOT NULL,
-  `uname` varchar(20) DEFAULT NULL,
-  `upwd` varchar(128) DEFAULT NULL,
+  `uname` varchar(20) NOT NULL,
+  `upwd` varchar(128) NOT NULL,
   `ustate` varchar(50) DEFAULT NULL,
-  `name` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`uid`)
+  `realName` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`uid`),
+  UNIQUE KEY `user_unique` (`uname`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -268,6 +288,7 @@ CREATE TABLE `userrole` (
 -- ----------------------------
 -- Records of userrole
 -- ----------------------------
+INSERT INTO `userrole` VALUES ('1111', '123', 'a1', 'admin');
 
 -- ----------------------------
 -- Table structure for `xc_user`
