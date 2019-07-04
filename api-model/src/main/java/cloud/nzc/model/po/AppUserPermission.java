@@ -9,6 +9,9 @@ import java.util.List;
 public class AppUserPermission  extends  UserPo{
     private List<AppPermission> permissionList;//用户权限
     private String status;
+    public AppUserPermission(){
+        super();
+    }
     public AppUserPermission(UserPo userPo){
         super(userPo.getuId(), userPo.getuName(), userPo.getuPWD(),userPo.getUstate(), userPo.getRealName());
     }

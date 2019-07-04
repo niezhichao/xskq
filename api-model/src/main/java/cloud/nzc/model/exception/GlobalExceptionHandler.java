@@ -47,6 +47,6 @@ public class GlobalExceptionHandler {
         ex.printStackTrace();
         //记录日志
         log.error("catch exception:{}", ex.getMessage());
-        return new HttpResponse(ResultCode.ERROR, ex);
+        return new HttpResponse(ResultCode.ERROR, ex.getMessage());
     }
 }
