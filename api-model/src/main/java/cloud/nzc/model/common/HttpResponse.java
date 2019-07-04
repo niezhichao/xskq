@@ -1,34 +1,36 @@
 package cloud.nzc.model.common;
 
-import com.netflix.ribbon.proxy.annotation.Http;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @Title 结果信息类
  * @Author: zhichao nie
  * @CreateDate: 2019/03/18
  */
-public class HttpResponse<T> extends BaseEntity {
+public class HttpResponse extends  PageContant {
+    private  final  static Logger log=LoggerFactory.getLogger(HttpResponse.class);
     private  String code;
     private  String msg;
-    private  T resultData;
+    private  Object resultData;
     public HttpResponse() {
     }
 
     /**
      *成功后调用
      * @param data
-     * @param <T> static 要加泛型<T> 是指定要return的HtttpResponse的类型.
      * @return
      */
-    public static  <T>  HttpResponse<T> success(T data){
-        return new HttpResponse<>(data);
+    public static  HttpResponse success(Object data){
+        return new HttpResponse(ResultCode.SUCCESS,data);
     }
 
-    public static <T> HttpResponse<T> error(ResultCode resultCode,T data){
-        return new HttpResponse<>(resultCode,data);
+    public static  HttpResponse error(ResultCode resultCode,String msg){
+        log.error(msg);
+        return new HttpResponse(resultCode,msg);
     }
 
-    public  HttpResponse(ResultCode resultCode,T resultData){
+    public  HttpResponse(ResultCode resultCode,Object resultData){
         this.code=resultCode.getCode();
         this.msg=resultCode.getMsg();
         this.resultData=resultData;
@@ -39,7 +41,7 @@ public class HttpResponse<T> extends BaseEntity {
         this.msg=resultCode.getMsg();
     }
 
-    public  HttpResponse(T resultData){
+    public  HttpResponse(Object resultData){
         this.resultData=resultData;
     }
     public HttpResponse(String code,String msg){
@@ -47,12 +49,19 @@ public class HttpResponse<T> extends BaseEntity {
         this.msg=msg;
     }
 
-    public HttpResponse(String code,String msg,T data){
+    public HttpResponse(String code,String msg,Object data){
         this.msg=msg;
         this.code=code;
         this.resultData=data;
     }
 
+    /**
+     * 返回的视图page对象
+     * @return
+     */
+    /*public static HttpResponse toPage(){
+
+    }*/
     public String getCode() {
         return code;
     }
@@ -69,11 +78,11 @@ public class HttpResponse<T> extends BaseEntity {
         this.msg = msg;
     }
 
-    public T getResultData() {
+    public Object getResultData() {
         return resultData;
     }
 
-    public void setResultData(T resultData) {
+    public void setResultData(Object resultData) {
         this.resultData = resultData;
     }
 }
