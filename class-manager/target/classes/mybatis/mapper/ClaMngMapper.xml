@@ -43,7 +43,7 @@
         <if test="claMngVo.cRemark !='' and claMngVo.cRemark !=null">
             and   c.cid=.claMngVo.iD
         </if>
-        limit (claMngVo.pageNum-1)*(claMngVo.limit),claMngVo.limit;
+        limit claMngVo.pageNum;
     </select>
 </mapper>
 

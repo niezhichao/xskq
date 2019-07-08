@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * 分页出处理
  * @param <T>
  */
-public class Page<T> extends ArrayList<T> implements Serializable {
+public class PageInPo<T> extends ArrayList<T> implements Serializable {
     /**
      * 页码
      */

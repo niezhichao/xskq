@@ -1,8 +1,7 @@
 package cloud.nzc.cla.service;
 
 import cloud.nzc.cla.dao.ClaMngDao;
-import cloud.nzc.model.common.HttpResponse;
-import cloud.nzc.model.common.Page;
+import cloud.nzc.model.common.PageInPo;
 import cloud.nzc.model.po.ClaMng;
 import cloud.nzc.model.vo.ClaMngVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,9 +50,9 @@ public class ClaMngService {
         return claMngDao.updateNotEmptyByPrimarykey(cla);
     }
 
-    public Page<ClaMng>  getClaMngPageByCondition(ClaMngVo claMngVo){
+    public PageInPo<ClaMng> getClaMngPageByCondition(ClaMngVo claMngVo){
         List<ClaMng> claMngs=claMngDao.selectClaMngListByCondition(claMngVo);
-        Page<ClaMng> claMngPage=new Page();
+        PageInPo<ClaMng> claMngPage=new PageInPo();
         claMngPage.setData(claMngs);
         claMngPage.setPageNum(claMngVo.getPageNum());
         claMngPage.setPageSize(claMngVo.getLimit());

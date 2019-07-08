@@ -54,7 +54,7 @@ public class HttpResponse extends  PageContant {
         this.code=code;
         this.resultData=data;
     }
-    public static HttpResponse toPage(Page page){
+    public static HttpResponse toPage(PageInPo page){
         HttpResponse res=new HttpResponse(ResultCode.SUCCESS,page.getData());
         res.setLimit(page.getPageSize());
         res.setPageNum(page.getPageNum());
