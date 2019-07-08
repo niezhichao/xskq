@@ -54,7 +54,13 @@ public class HttpResponse extends  PageContant {
         this.code=code;
         this.resultData=data;
     }
-
+    public static HttpResponse toPage(Page page){
+        HttpResponse res=new HttpResponse(ResultCode.SUCCESS,page.getData());
+        res.setLimit(page.getPageSize());
+        res.setPageNum(page.getPageNum());
+        res.setTotal(page.getTotal());
+        return res;
+    }
     /**
      * 返回的视图page对象
      * @return

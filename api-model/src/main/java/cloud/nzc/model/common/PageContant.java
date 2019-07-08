@@ -12,10 +12,10 @@ import java.util.List;
  */
 public class PageContant extends BaseEntity {
 
-    private Integer pageNum;//当前页数
-    private  Integer limit;//每页记录数
+    private Integer pageNum=0;//当前页数
+    private  Integer limit=5;//每页记录数
     private  Integer total;//总记录数
-    private     Integer totalPageNum;//分页总页数
+    private  Integer totalPageNum;//分页总页数
 
     public Integer getPageNum() {
         return pageNum;

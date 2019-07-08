@@ -1,7 +1,10 @@
 package cloud.nzc.cla.service;
 
 import cloud.nzc.cla.dao.ClaMngDao;
+import cloud.nzc.model.common.HttpResponse;
+import cloud.nzc.model.common.Page;
 import cloud.nzc.model.po.ClaMng;
+import cloud.nzc.model.vo.ClaMngVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -48,27 +51,13 @@ public class ClaMngService {
         return claMngDao.updateNotEmptyByPrimarykey(cla);
     }
 
-    public ClaMng getClaMngById(String cId) throws Exception {
-        return claMngDao.selectByPrimaryKey(cId);
-    }
-
-    public List<ClaMng> getClaMngListByCondition(ClaMng cla) throws Exception {
-        List<ClaMng> res = new ArrayList<ClaMng>();
-        res = claMngDao.selectByCondition(cla);
-        return res;
-    }
-
-    public List<ClaMng> getClaMngListByIds(List ids) throws Exception {
-        List<ClaMng> res = new ArrayList<ClaMng>();
-        res = claMngDao.selectByIds(ids);
-        return res;
-    }
-
-    public int getClaMngCount(ClaMng cla) throws Exception {
-        return claMngDao.selectCount(cla);
-    }
-
-    public List<ClaMng> getClaMngAll() throws Exception {
-        return claMngDao.selectAll();
+    public Page<ClaMng>  getClaMngPageByCondition(ClaMngVo claMngVo){
+        List<ClaMng> claMngs=claMngDao.selectClaMngListByCondition(claMngVo);
+        Page<ClaMng> claMngPage=new Page();
+        claMngPage.setData(claMngs);
+        claMngPage.setPageNum(claMngVo.getPageNum());
+        claMngPage.setPageSize(claMngVo.getLimit());
+        claMngPage.setTotal(claMngPage.getTotal());
+        return claMngPage;
     }
 }
