@@ -18,7 +18,7 @@ public class ClaMng extends BaseEntity {
 
     @Id
     @Column(name = "id")
-    private String iD;
+        private String iD;
     @Column(name = "cname")
     private String cName;//班级名
     @Column(name = "cremark")
