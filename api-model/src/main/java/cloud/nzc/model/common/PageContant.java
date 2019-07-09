@@ -20,21 +20,17 @@ public class PageContant extends BaseEntity {
     private  Integer total;//总记录数
     private  Integer totalPageNum;//分页总页数
     private  Integer pageStart;//当前页开始
-    private  Integer pageEnd;//当前页结束
+
+    public  void initPageStart(Integer pageNum,Integer limit){
+        this.pageStart=(pageNum-1)*limit;
+    }
+
     public Integer getPageStart() {
         return pageStart;
     }
 
     public void setPageStart(Integer pageStart) {
         this.pageStart = pageStart;
-    }
-
-    public Integer getPageEnd() {
-        return pageEnd;
-    }
-
-    public void setPageEnd(Integer pageEnd) {
-        this.pageEnd = pageEnd;
     }
 
     public Integer getPageNum() {

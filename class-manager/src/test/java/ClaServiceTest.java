@@ -1,7 +1,10 @@
 import cloud.nzc.cla.ClaManagerApplication;
 import cloud.nzc.cla.service.ClaMngService;
+import cloud.nzc.model.common.PageInPo;
+import cloud.nzc.model.mybatis.page.Page;
 import cloud.nzc.model.po.ClaMng;
 import cloud.nzc.model.util.StringUtil;
+import cloud.nzc.model.vo.ClaMngVo;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -16,37 +19,14 @@ import java.util.List;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = ClaManagerApplication.class)
 public class ClaServiceTest {
-    private Logger log=LoggerFactory.getLogger(ClaServiceTest.class);
+    private final static Logger log=LoggerFactory.getLogger(ClaServiceTest.class);
     @Autowired
     private ClaMngService claMngService;
     private  ClaMng claMng=new ClaMng();
+    private ClaMngVo claMngVo=new ClaMngVo();
     @Test
-    public void insertTest()throws Exception{
-        claMng.setiD(StringUtil.getUUID());
-        claMng.setcName("火箭炮班");
-        claMng.setcRemark("120火箭炮");
-        int res=claMngService.insert(claMng);
-        log.info("clamng 成功插入： "+res);
+    public  void testModifyMethod(){
+        PageInPo<ClaMng> claMngPage=claMngService.getClaMngPageByCondition(claMngVo);
+        log.info(claMngPage.getPageNum()+","+claMngPage.getTotal()+","+claMngPage.getPageSize()+","+claMngPage.getData());
     }
-    @Test
-    public void deleteTest()throws Exception{
-        int res = claMngService.deleteClaMngById("1");
-        claMngService.deleteClaMngByCondiction(claMng);
-        List<String> deleteIds= new ArrayList<>();
-        deleteIds.add("2");
-        deleteIds.add("3");
-        claMngService.deleteClaMngByIds(deleteIds);
-
-    }
-    @Test
-    public void updateTest()throws Exception{
-        claMng.setiD("584654fe15774dd4beadad7c9f97a52a");
-        claMng.setcName("侦察班");
-        claMng.setcRemark(null);
-        int res=claMngService.updateNotEmptyByPrimarykey(claMng);
-        log.info("clamng updateNotEmptyByPrimarykey 方法 成功更新： "+res);
-
-    }
-
-
 }

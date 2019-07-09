@@ -47,4 +47,13 @@ public class ClaMng extends BaseEntity {
     public void setcRemark(String cRemark) {
         this.cRemark = cRemark;
     }
+
+    @Override
+    public String toString() {
+        return "ClaMng{" +
+                "iD='" + iD + '\'' +
+                ", cName='" + cName + '\'' +
+                ", cRemark='" + cRemark + '\'' +
+                '}';
+    }
 }

@@ -6,7 +6,6 @@ public class ClaMngVo extends PageContant {
     private String iD;
     private String cName;//班级名
     private String cRemark;//备注
-
     public ClaMngVo() {
     }
 

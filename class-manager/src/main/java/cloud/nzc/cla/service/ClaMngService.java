@@ -1,6 +1,7 @@
 package cloud.nzc.cla.service;
 
 import cloud.nzc.cla.dao.ClaMngDao;
+import cloud.nzc.model.common.PageContant;
 import cloud.nzc.model.common.PageInPo;
 import cloud.nzc.model.po.ClaMng;
 import cloud.nzc.model.vo.ClaMngVo;
@@ -51,8 +52,11 @@ public class ClaMngService {
     }
 
     public PageInPo<ClaMng> getClaMngPageByCondition(ClaMngVo claMngVo){
+        claMngVo.initPageStart(claMngVo.getPageNum(),claMngVo.getLimit());
         List<ClaMng> claMngs=claMngDao.selectClaMngListByCondition(claMngVo);
+        Integer total=claMngDao.selecTotalByCondition(claMngVo);
         PageInPo<ClaMng> claMngPage=new PageInPo();
+        claMngPage.setTotal(total);
         claMngPage.setData(claMngs);
         claMngPage.setPageNum(claMngVo.getPageNum());
         claMngPage.setPageSize(claMngVo.getLimit());

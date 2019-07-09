@@ -29,21 +29,34 @@
     </update>
     <select id="selectClaMngListByCondition" parameterType="cloud.nzc.model.vo.ClaMngVo" resultType="cloud.nzc.model.po.ClaMng">
         select
-        count(*) as total
         c.cid as iD,
         c.cname as cName,
         c.cremark as cRemark
         from clamng c where 1=1
         <if test="claMngVo.iD !='' and claMngVo.iD !=null">
-            and   c.cid=.claMngVo.iD
+            and   c.cid=#{claMngVo.iD}
         </if>
         <if test="claMngVo.cName !='' and claMngVo.cName !=null">
-            and   c.cid=.claMngVo.iD
+            and   c.cname=#{claMngVo.cName}
         </if>
         <if test="claMngVo.cRemark !='' and claMngVo.cRemark !=null">
-            and   c.cid=.claMngVo.iD
+            and   c.cremark=#{claMngVo.cRemark}
         </if>
-        limit claMngVo.pageNum;
+       limit #{claMngVo.pageStart}, #{claMngVo.limit}
+    </select>
+    <select id="selecTotalByCondition" parameterType="cloud.nzc.model.vo.ClaMngVo" resultType="java.lang.Integer">
+        select
+        count(*)
+        from clamng c where 1=1
+        <if test="claMngVo.iD !='' and claMngVo.iD !=null">
+            and   c.cid=#{claMngVo.iD}
+        </if>
+        <if test="claMngVo.cName !='' and claMngVo.cName !=null">
+            and   c.cname=#{claMngVo.cName}
+        </if>
+        <if test="claMngVo.cRemark !='' and claMngVo.cRemark !=null">
+            and   c.cremark=#{claMngVo.cRemark}
+        </if>
     </select>
 </mapper>
 
