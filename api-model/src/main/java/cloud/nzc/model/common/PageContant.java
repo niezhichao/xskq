@@ -64,9 +64,6 @@ public class PageContant extends BaseEntity {
     }
 
     public Integer getTotalPageNum() {
-        if(total>0 && limit>0){
-            totalPageNum=(total+limit-1)/limit;
-        }
         return totalPageNum;
     }
 
