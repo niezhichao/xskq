@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 @SpringBootApplication
 @EnableDiscoveryClient
 @MapperScan(basePackages = "cloud.nzc.cla.dao")
+@ComponentScan(basePackages = {"cloud.nzc.cla"})
 public class ClaManagerApplication {
     public  static  void main(String[] args){
         SpringApplication.run(ClaManagerApplication.class,args);
