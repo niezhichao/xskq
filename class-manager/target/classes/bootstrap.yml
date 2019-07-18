@@ -21,3 +21,5 @@ eureka:
 mybatis:
   mapper-locations: classpath:/mybatis/mapper/*.xml
   type-aliases-package: cloud.nzc.model.po
+
+

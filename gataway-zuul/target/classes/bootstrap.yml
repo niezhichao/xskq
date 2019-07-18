@@ -26,6 +26,7 @@ zuul:
     cla-service:
       path: /claApi/**
       serviceId: cla-service
+      sensitiveHeaders:
     std-service:
       path: /stdApi/**
       serivceId: std-service
@@ -39,3 +40,5 @@ zuul:
     #resource:
       #jwt:
         #key-value: springcloud123 #使用对称加密 默认算法HS256
+
+

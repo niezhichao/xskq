@@ -6,7 +6,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 import org.springframework.security.oauth2.provider.token.TokenStore;
@@ -20,9 +22,11 @@ import java.util.stream.Collectors;
 
 @Configuration
 @EnableResourceServer
+@EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     private  static final Logger log=LoggerFactory.getLogger(ResourceServerConfig.class);
-    private  static final String pubKey="pubKey.txt";
+    private  static final String pubkey="pubkey.txt";
 
     @Bean
     public TokenStore tokenStore(JwtAccessTokenConverter converter){
@@ -41,7 +45,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     }
 
     private  String getPubKey() throws IOException {
-        Resource resource=new ClassPathResource(pubKey);
+        Resource resource=new ClassPathResource(pubkey);
         InputStreamReader inputStreamReader=new InputStreamReader(resource.getInputStream());
         BufferedReader bufferedReader=new BufferedReader(inputStreamReader);
         return bufferedReader.lines().collect(Collectors.joining("\n"));
@@ -50,6 +54,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
+                .antMatchers("**/claApi/**").permitAll()
                 .anyRequest().authenticated();
     }
 }
