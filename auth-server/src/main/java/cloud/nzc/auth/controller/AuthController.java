@@ -66,12 +66,8 @@ public class AuthController implements AuthControllerApi {
 
     @Override
     @PostMapping("/userjwt")
-    public HttpResponse getJWT(String access_token) {
-        HttpServletRequest request=((ServletRequestAttributes)(RequestContextHolder.currentRequestAttributes())).getRequest();
-        HttpServletResponse response = ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getResponse();
-        response.setHeader( "Access-Control-Allow-Headers","Origin, X-Requested-With, Content-Type, Accept");//
-        response.addHeader( "Access-Control-Allow-Origin", "*" ); //可以访问此域资源的域。*为所有
-        response.addHeader( "Access-Control-Allow-Methods", "POST" );
+    public HttpResponse getJWT(String access_token,HttpServletResponse response) {
+        response.setHeader("Access-Control-Allow-Origin","*");
         AuthToken authToken =authService.getTokenFromReids(access_token);
         String  res=authToken.getJwt_token();
         return new HttpResponse(ResultCode.SUCCESS,res);
