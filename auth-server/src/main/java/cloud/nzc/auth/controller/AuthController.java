@@ -9,6 +9,7 @@ import cloud.nzc.model.common.HttpResponse;
 import cloud.nzc.model.common.ResultCode;
 import cloud.nzc.model.po.UserPo;
 import org.apache.commons.lang.StringUtils;
+import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.Map;
@@ -57,9 +59,22 @@ public class AuthController implements AuthControllerApi {
         return new HttpResponse(ResultCode.SUCCESS,access_token);
     }
     @Override
-    @GetMapping("/getJwt")
+    @GetMapping("")
     public HttpResponse logout() {
         return null;
+    }
+
+    @Override
+    @PostMapping("/userjwt")
+    public HttpResponse getJWT(String access_token) {
+        HttpServletRequest request=((ServletRequestAttributes)(RequestContextHolder.currentRequestAttributes())).getRequest();
+        HttpServletResponse response = ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getResponse();
+        response.setHeader( "Access-Control-Allow-Headers","Origin, X-Requested-With, Content-Type, Accept");//
+        response.addHeader( "Access-Control-Allow-Origin", "*" ); //可以访问此域资源的域。*为所有
+        response.addHeader( "Access-Control-Allow-Methods", "POST" );
+        AuthToken authToken =authService.getTokenFromReids(access_token);
+        String  res=authToken.getJwt_token();
+        return new HttpResponse(ResultCode.SUCCESS,res);
     }
 
     /**

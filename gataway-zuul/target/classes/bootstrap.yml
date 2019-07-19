@@ -23,13 +23,15 @@ zuul:
     attendance-service:
       path: /attendanceApi/**
       serviceId: attendance-service
+      sensitiveHeaders:
     cla-service:
       path: /claApi/**
       serviceId: cla-service
-      sensitiveHeaders:
+      sensitiveHeaders: #暂时不懂什么原因，加sensitiveHeaders 才能访问到资源服务  不然会提示未授权
     std-service:
       path: /stdApi/**
       serivceId: std-service
+      sensitiveHeaders:
 #security:
 #  oauth2:
  #   client:
