@@ -7,7 +7,7 @@ public enum AppSerivceName {
     public  String getAppServiceName(){
         return this.appServiceName;
     }
-    private AppSerivceName(String seriveName){
+    private AppSerivceName(String appServiceName){
             this.appServiceName=appServiceName;
     }
 }

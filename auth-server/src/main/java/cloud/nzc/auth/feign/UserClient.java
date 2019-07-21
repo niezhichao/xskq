@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
-@FeignClient( value=CommonCodeUtil.USER_SERVICE)
+@FeignClient(value=CommonCodeUtil.USER_SERVICE)
 @Service
 public interface UserClient {
     @PostMapping("/user/getuser")
