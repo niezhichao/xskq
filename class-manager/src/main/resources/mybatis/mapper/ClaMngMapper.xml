@@ -37,10 +37,10 @@
             and   c.cid=#{claMngVo.iD}
         </if>
         <if test="claMngVo.cName !='' and claMngVo.cName !=null">
-            and   c.cname=#{claMngVo.cName}
+            and   c.cname like  "%"#{claMngVo.cName}"%"
         </if>
         <if test="claMngVo.cRemark !='' and claMngVo.cRemark !=null">
-            and   c.cremark=#{claMngVo.cRemark}
+            and   c.cremark  like "%"#{claMngVo.cRemark}"%"
         </if>
        limit #{claMngVo.pageStart}, #{claMngVo.limit}
     </select>
@@ -52,10 +52,10 @@
             and   c.cid=#{claMngVo.iD}
         </if>
         <if test="claMngVo.cName !='' and claMngVo.cName !=null">
-            and   c.cname=#{claMngVo.cName}
+            and   c.cname like  "%"#{claMngVo.cName}"%"
         </if>
         <if test="claMngVo.cRemark !='' and claMngVo.cRemark !=null">
-            and   c.cremark=#{claMngVo.cRemark}
+            and   c.cremark  like "%"#{claMngVo.cRemark}"%"
         </if>
     </select>
 </mapper>
