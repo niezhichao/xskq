@@ -73,7 +73,7 @@ public class HttpResponse extends  PageContant {
     }
 
     public void setCode(String code) {
-        code = code;
+        this.code = code;
     }
 
     public String getMsg() {

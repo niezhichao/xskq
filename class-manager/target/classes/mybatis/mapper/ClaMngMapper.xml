@@ -58,5 +58,9 @@
             and   c.cremark  like "%"#{claMngVo.cRemark}"%"
         </if>
     </select>
+
+    <insert id="insert" parameterType="cloud.nzc.model.po.ClaMng" >
+      insert  into  clamng (cid,cname,cremark) values (#{t.iD},#{t.cName},#{t.cRemark})
+    </insert>
 </mapper>
 

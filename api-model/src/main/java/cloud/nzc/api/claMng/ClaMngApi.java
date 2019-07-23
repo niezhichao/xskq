@@ -6,5 +6,5 @@ import cloud.nzc.model.vo.ClaMngVo;
 
 public interface ClaMngApi {
     HttpResponse getClaMngPageByCondition(ClaMngVo claMngVo);
-    HttpResponse createClaMng(ClaMngVo claMngVo);
+    HttpResponse createClaMng(ClaMngVo claMngVo) throws Exception;
 }

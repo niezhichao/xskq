@@ -20,8 +20,9 @@ public class ClaMngService {
     private ClaMngDao claMngDao;
 
     @Transactional
-    public int insert(ClaMng cla) throws Exception {
-        return claMngDao.insert(cla);
+    public void insert(ClaMng cla) throws Exception {
+        int res=claMngDao.insert(cla);
+        //return res;
     }
 
     @Transactional

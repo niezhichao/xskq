@@ -8,16 +8,23 @@ import cloud.nzc.model.common.PageInPo;
 import cloud.nzc.model.common.ResultCode;
 import cloud.nzc.model.po.ClaMng;
 import cloud.nzc.model.vo.ClaMngVo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.List;
 
 @RestController
 @RequestMapping("/claMng")
 public class ClaController implements ClaMngApi {
+    private  static final Logger log=LoggerFactory.getLogger(ClaController.class);
     @Autowired
     ClaMngService claMngService;
     @GetMapping("/getClaMngList")
@@ -26,9 +33,9 @@ public class ClaController implements ClaMngApi {
         PageInPo<ClaMng> claMngPage=claMngService.getClaMngPageByCondition(claMngVo);
         return HttpResponse.toPage(claMngPage);
     }
-
+    @GetMapping("/addClaMng")
     @Override
-    public HttpResponse createClaMng(ClaMngVo claMngVo) {
+    public HttpResponse createClaMng(ClaMngVo claMngVo)throws Exception {
         HttpResponse res=new HttpResponse();
         if ("".equals(claMngVo.getcName()) || null==claMngVo.getcName()){
             res.setCode(ResultCode.CLAINSERTFAIL.getCode());
@@ -37,6 +44,7 @@ public class ClaController implements ClaMngApi {
         }
         ClaMng claMng=new ClaMng(claMngVo.getcName(),claMngVo.getcRemark());
         claMng.setiD(StringUtil.getUUID());
+        claMngService.insert(claMng);
         res.setCode(ResultCode.SUCCESS.getCode());
         res.setMsg(ResultCode.SUCCESS.getMsg());
         return res;
