@@ -3,6 +3,7 @@ package cloud.nzc.model.common;
 public enum  ResultCode {
     SUCCESS("RCD0000","成功"),
     FAIL("RCD0001","失败"),
+    CLAINSERTFAIL("RCD0007","班级名称不能为空！"),
     ERROR("RCD0002","系统错误"),
     USERNAME_ERROR("RCD0003","账号不存在！"),
     CREDENTIAL_ERROR("RCD0004","账号或密码错误！"),

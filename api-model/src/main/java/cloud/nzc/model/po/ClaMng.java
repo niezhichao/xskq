@@ -10,19 +10,25 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "claMng")
 public class ClaMng extends BaseEntity {
 
     @Id
     @Column(name = "id")
-        private String iD;
+    private String iD;
     @Column(name = "cname")
     private String cName;//班级名
     @Column(name = "cremark")
     private String cRemark;//备注
+
+    public ClaMng() {
+    }
+
+    public ClaMng(String cName, String cRemark) {
+        this.cName = cName;
+        this.cRemark = cRemark;
+    }
 
     public String getiD() {
         return iD;
