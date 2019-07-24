@@ -11,10 +11,13 @@ import cloud.nzc.model.vo.ClaMngVo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -27,12 +30,21 @@ public class ClaController implements ClaMngApi {
     private  static final Logger log=LoggerFactory.getLogger(ClaController.class);
     @Autowired
     ClaMngService claMngService;
+    @Value("${save.filePath}")
+    String filePath;
     @GetMapping("/getClaMngList")
     @Override
     public HttpResponse getClaMngPageByCondition(ClaMngVo claMngVo) {
         PageInPo<ClaMng> claMngPage=claMngService.getClaMngPageByCondition(claMngVo);
         return HttpResponse.toPage(claMngPage);
     }
+
+    @Override
+    @PostMapping("/upload")
+    public HttpResponse uploadFile(MultipartFile file) {
+        return null;
+    }
+
     @GetMapping("/addClaMng")
     @Override
     public HttpResponse createClaMng(ClaMngVo claMngVo)throws Exception {
